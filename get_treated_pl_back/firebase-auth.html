@@ -1,0 +1,83 @@
+<html>
+
+<head>
+    <title>
+        This is only to test firebase auth
+    </title>
+</head>
+
+<body>
+    <div>
+        <button onclick="auth()">Sign in</button>
+        <button onclick="logout()">Sign out</button>
+
+    </div>
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyD3Ua5CV8UaT9HWedYPEWD8MPMiY2e-Eow",
+            authDomain: "test-sandra-13f5f.firebaseapp.com",
+            databaseURL: "https://test-sandra-13f5f.firebaseio.com",
+            projectId: "test-sandra-13f5f",
+            storageBucket: "test-sandra-13f5f.appspot.com",
+            messagingSenderId: "553169776755",
+            appId: "1:553169776755:web:6d48efd1532809b0ffba06",
+            measurementId: "G-WXWEG38YFW"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+
+        function auth() {
+            firebase.auth().signInWithEmailAndPassword("andranik@gmail.com", "azerty").then(function (res) {
+                alert("Successfully authenticated")
+            }).catch(function (error) {
+                // Handle Errors here.
+                console.log(error)
+                alert("Error authentication")
+            });
+        }
+
+
+        function logout() {
+            firebase.auth().signOut().then(function () {
+                // Sign-out successful.
+                alert("Sign out success")
+            }).catch(function (error) {
+                // An error happened.
+                alert("Sign out error")
+            });
+        }
+
+
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                // User is signed in.
+                console.log("user is signed in already")
+                const token = firebase.auth().currentUser.getIdToken()
+                console.log(token)
+            } else {
+                // No user is signed in.
+                alert("No user signed in")
+                //auth();
+            }
+        });
+
+
+
+    </script>
+</body>
+
+</html>
