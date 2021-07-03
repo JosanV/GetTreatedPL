@@ -11,7 +11,7 @@ const connect = function (callback) {
     mongoose.set('useUnifiedTopology', true);
     mongoose.set('useNewUrlParser', true);
     // Set 2/2.12 or later in mongoDB atlas
-    mongoose.connect("mongodb+srv://maxime:maxime54321@cluster0.ot2kp.mongodb.net/<dbname>?retryWrites=true&w=majority");
+    mongoose.connect("MONGODB URI");
     const db = mongoose.connection;
     db.on("error", console.error.bind(console, " Connection error"));
     db.once("open", function () {
